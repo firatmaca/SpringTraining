@@ -9,5 +9,11 @@ public class RestControllerExample {
     @GetMapping
     public String getSayHello(){
         return "Hellooo";
+
+    }
+
+    @GetMapping("/place")
+    public String getPlace(){
+        return "Ankara";
     }
 }

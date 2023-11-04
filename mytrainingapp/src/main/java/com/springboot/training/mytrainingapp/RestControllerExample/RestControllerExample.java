@@ -9,9 +9,11 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class RestControllerExample {
     Coach myCoach;
+    Coach myCoachOther;
     @Autowired
-    RestControllerExample(@Qualifier("basketballCoach") Coach theCoach){
+    RestControllerExample(@Qualifier("basketballCoach") Coach theCoach,@Qualifier("basketballCoach") Coach ignoredTheCoach){
         this.myCoach= theCoach;
+        this.myCoachOther = ignoredTheCoach;
     }
 
     @GetMapping
@@ -23,5 +25,10 @@ public class RestControllerExample {
     @GetMapping("/place")
     public String getPlace(){
         return "Ankara";
+    }
+
+    @GetMapping("/check")
+    public String getPlace1(){
+        return "Is myCoach equal myCoachOther  ?" +  (myCoach == myCoachOther) ;
     }
 }
